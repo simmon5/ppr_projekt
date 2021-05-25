@@ -1,0 +1,7 @@
+#!/bin/bash 
+
+
+konsole --noclose -e "php 1.php" &
+konsole --noclose -e "./2" &
+konsole --noclose -e "mono 3.exe" &
+konsole --noclose -e "python3 4.py"

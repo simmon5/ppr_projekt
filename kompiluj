@@ -1,0 +1,7 @@
+#!/bin/bash
+
+gcc `xmlrpc-c-config abyss-server --cflags`	 -O2 -Wall -c 2.c
+gcc `xmlrpc-c-config abyss-server --libs`	 -s 2.c -o 2
+
+sudo gacutil /i CookComputing.XmlRpcV2.dll
+csc /r:CookComputing.XmlRpcV2.dll -out:3.exe 3.cs
