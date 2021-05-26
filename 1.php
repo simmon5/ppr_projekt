@@ -9,7 +9,10 @@
 	while(true)
 	{
 	$line = fgets(STDIN); 
-	$req = xmlrpc_encode_request("sample.add",$line);
+	$prefix = "yolo_" . $line;
+	print($prefix);
+	$req = xmlrpc_encode_request("sample.add",$prefix);
+
 	#-------------------------------------------------------------------
 	$ctx = stream_context_create(
 		array(

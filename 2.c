@@ -70,7 +70,7 @@ int funkcja(char * text)
     n = write( fd, buffer, sizeof(buffer));
     if( n < 0 ) 	// sprawdzamy, czy wystapil blad ....
         perror( "write()" );
-    printf("Wyslano wiadomosc do procesu 2\n");
+    printf("Wyslano wiadomosc do procesu 2: %s\n",buffer);
     return 1;
 }
 //======================================================================
@@ -88,7 +88,8 @@ static xmlrpc_value * sample_add(
     if (envP->fault_occurred)
         return NULL;
 
-    printf("Otrzymano wiadomosc od procesu 1\n");
+    printf("Otrzymano wiadomosc od procesu 1: %s\n",text);
+
     
     char wynik[256];
     int i=0;

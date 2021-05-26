@@ -40,15 +40,41 @@ namespace socket
 						handler.Receive(bytes);
 						//data = Encoding.Unicode.GetString(bytes);
 						data = enc8.GetString(bytes);
-						Console.WriteLine("Otrzymano wiadomosc od procesu 2.");
-						byte[] msg = Encoding.Unicode.GetBytes(data);
+						Console.WriteLine($"Otrzymano wiadomosc od procesu 2: {data}");
+						
+						
+						string ascii = string.Empty;
+						try
+                        {
+                            
+
+                            for (int i = 0; i < data.Length; i += 2)
+                            {
+                                String hs = string.Empty;
+
+                                hs   = data.Substring(i,2);
+                                uint decval =   System.Convert.ToUInt32(hs, 16);
+                                char character = System.Convert.ToChar(decval);
+                                ascii += character;
+
+                            }
+                            }
+                        catch (Exception ex) 
+                        { 
+                                //Console.WriteLine(ex.Message);
+                        }
+
+                         Console.WriteLine($"Odkodowana wiadomosc: {ascii}");   
+		
+						byte[] msg = Encoding.Unicode.GetBytes(ascii);
+						//byte[] msg = Encoding.Unicode.GetBytes(data);
 						handler.Send(msg);
 						handler.Shutdown(SocketShutdown.Both);
 						handler.Close();
 						
 						HEXX proxy = XmlRpcProxyGen.Create<HEXX>();
                         proxy.NonStandard = XmlRpcNonStandard.All;
-                        Console.WriteLine("Wyslano wiadomosc do procesu 3.");
+                        Console.WriteLine("Wyslano wiadomosc do procesu 4.");
                         proxy.abc(msg);
                         						
 						
